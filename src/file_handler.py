@@ -3,7 +3,10 @@ def load_file(file_name):
 	file_path	= sample_folder + "/" + file_name;
 	text_file	= open(file_path, "r");
 	lines_of_file	= text_file.read().split('\n');
-	loaded_lines	= [];
+	loaded_lines	= dict();
 	for i in range(0, len(lines_of_file)):
-		loaded_lines.append(lines_of_file[i].split(":::"));
+		elements = lines_of_file[i].split(":::");
+		if(elements[0] == ''):
+			continue;
+		loaded_lines[elements[0]] = elements[1];
 	return loaded_lines;
