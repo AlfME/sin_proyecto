@@ -1,3 +1,10 @@
+"""
+
+The module for loading a dataset from a given file and parsing it into a dictionary.
+The offered functions allow to receive a list of pairs of samples with their labels
+
+"""
+
 def load_file(file_name):
 	sample_folder	= "../samples";
 	file_path	= sample_folder + "/" + file_name;
