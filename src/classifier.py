@@ -17,10 +17,16 @@ import nltk
 
 
 class ClassificationPipeline:
-	
 
+	"""
+	Sets the data of the pipeline. It should be given as a list of pairs of (instance, class_labels), where the instance is a text string and the class labels are a tupel of class labels.
+
+	"""
 	def setData(self, data):
 		self.data = data	
+
+	def getProcessedData(self):
+		return self.dataProcessed
 
 	def setTokenizer(self, tokenizer):
 		self.tokenizer = tokenizer
@@ -36,4 +42,18 @@ class ClassificationPipeline:
 
 	#def loadClassifierFromFile
 
-	#
+	#def storeClassifierInFile
+
+	def getClassifier(self):
+		return self.classifier
+
+	def trainClassifier(self):
+		self.preprocess()
+		
+	def preprocess(self):
+		dataTokenized = self.tokenizer(self.data)
+		self.dataProcessed = self.cleaner(dataTokenized)
+	
+		#TODO
+		
+
