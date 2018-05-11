@@ -45,13 +45,13 @@ class ClassificationPipeline:
 		self.classifier = None
 
 	def loadClassifierFromFile(self, name):
-		f = open("../classifier/" + name + '.pickle', 'rb')
-		classifier = pickle.load(f)
+		f = open("../classifiers/" + name + '.pickle', 'rb')
+		self.classifier = pickle.load(f)
 		f.close()
 
 	def storeClassifierInFile(self, name):
-		f = open("../classifier/"  + name + '.pickle', 'wb')
-		pickle.dump(classifier, f)
+		f = open("../classifiers/"  + name + '.pickle', 'wb')
+		pickle.dump(self.classifier, f)
 		f.close()
 
 	def getClassifier(self):
@@ -66,6 +66,6 @@ class ClassificationPipeline:
 		self.dataProcessed = self.cleaner(dataTokenized)
 
 	def train(self):
-		classifier = MaxentClassifier.train(self.featex(self.dataProcessed))
+		self.classifier = MaxentClassifier.train(self.featex(self.dataProcessed), max_iter=15)
 		
 
