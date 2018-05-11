@@ -14,6 +14,7 @@ Generic pipeline structure:
 """
 
 import nltk
+import pickle
 
 
 class ClassificationPipeline:
@@ -40,9 +41,15 @@ class ClassificationPipeline:
 	def setClassifier(self, classifier):
 		self.classifier = classifier
 
-	#def loadClassifierFromFile
+	def loadClassifierFromFile(self, name):
+		f = open(name + '.pickle', 'rb')
+		classifier = pickle.load(f)
+		f.close()
 
-	#def storeClassifierInFile
+	def storeClassifierInFile(self, name):
+		f = open(name + '.pickle', 'wb')
+		pickle.dump(classifier, f)
+		f.close()
 
 	def getClassifier(self):
 		return self.classifier
@@ -53,7 +60,8 @@ class ClassificationPipeline:
 	def preprocess(self):
 		dataTokenized = self.tokenizer(self.data)
 		self.dataProcessed = self.cleaner(dataTokenized)
-	
-		#TODO
+
+	def train(self):
+		classifier.train(featex(self.dataProcessed))
 		
 
