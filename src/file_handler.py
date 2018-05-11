@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-#[(content, (gender, stance))]
-=======
 """
 
 The module for loading a dataset from a given file and parsing it into a dictionary.
@@ -19,8 +16,8 @@ def load_file(file_name):
 		if(elements[0] == ''):
 			continue;
 		if(len(elements) >= 3):
-			elements_structured = (elements[1], elements[2])
+			elements_structured = (unicode(elements[1], 'utf8'), unicode(elements[2], 'utf8'))
 		else:
-			elements_structured = (elements[1])
+			elements_structured = (unicode(elements[1], 'utf8'))
 		loaded_lines[elements[0]] = elements_structured;
 	return loaded_lines;

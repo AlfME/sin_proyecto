@@ -16,6 +16,9 @@ Generic pipeline structure:
 import nltk
 import pickle
 
+import nltk.classify.util
+from nltk.classify import MaxentClassifier
+
 
 class ClassificationPipeline:
 
@@ -38,8 +41,8 @@ class ClassificationPipeline:
 	def setFeatureEx(self, featex):
 		self.featex = featex
 
-	def setClassifier(self, classifier):
-		self.classifier = classifier
+	def resetClassifier(self, classifier):
+		self.classifier = None
 
 	def loadClassifierFromFile(self, name):
 		f = open(name + '.pickle', 'rb')
@@ -56,12 +59,13 @@ class ClassificationPipeline:
 
 	def trainClassifier(self):
 		self.preprocess()
+		self.train
 		
 	def preprocess(self):
 		dataTokenized = self.tokenizer(self.data)
 		self.dataProcessed = self.cleaner(dataTokenized)
 
 	def train(self):
-		classifier.train(featex(self.dataProcessed))
+		classifier = MaxentClassifier.train(self.featex(self.dataProcessed))
 		
 
