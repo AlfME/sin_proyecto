@@ -45,12 +45,12 @@ class ClassificationPipeline:
 		self.classifier = None
 
 	def loadClassifierFromFile(self, name):
-		f = open(name + '.pickle', 'rb')
+		f = open("../classifier/" + name + '.pickle', 'rb')
 		classifier = pickle.load(f)
 		f.close()
 
 	def storeClassifierInFile(self, name):
-		f = open(name + '.pickle', 'wb')
+		f = open("../classifier/"  + name + '.pickle', 'wb')
 		pickle.dump(classifier, f)
 		f.close()
 
