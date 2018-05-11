@@ -3,6 +3,8 @@
 Here the functions for the pipeline are defined.
 
 """
+from nltk.tokenize.toktok import ToktokTokenizer
+
 
 #define tokenizer
 def tokenizer1():
