@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 #[(content, (gender, stance))]
+=======
+"""
+
+The module for loading a dataset from a given file and parsing it into a dictionary.
+The offered functions allow to receive a list of pairs of samples with their labels
+
+"""
+>>>>>>> ca89704a5579af3ad0ad6b2fd07e21d6c2e67b25
 
 def load_file(file_name):
 	sample_folder	= "../samples";
