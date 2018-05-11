@@ -5,7 +5,7 @@ The main class realizing training/classification/evaluation based on the command
 """
 
 import file_handler
-import pipelineFunctions
+from pipelineFunctions import *
 
 import classifier
 from classifier import ClassificationPipeline
