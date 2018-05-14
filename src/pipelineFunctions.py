@@ -33,3 +33,36 @@ def featureEx1():
 
 	return featex;
 
+
+
+####################GENDER#######################
+def cleaner_gender():
+	return lambda x : x;
+
+def featureEx_gender():
+	def featex(data):
+		res = [];
+		for d in data:
+			for w in d[0]:
+				res = res + [({w : 1}, d[1])]
+
+		return res;
+
+	return featex;
+
+
+#####################STANCE########################
+def cleaner_stance():
+	return lambda x : x;
+
+def featureEx_stance():
+	def featex(data):
+		res = [];
+		for d in data:
+			for w in d[0]:
+				res = res + [({w : 1}, d[1])]
+
+		return res;
+
+	return featex;
+
