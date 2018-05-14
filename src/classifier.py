@@ -64,8 +64,9 @@ class ClassificationPipeline:
 	def preprocess(self):
 		dataTokenized = self.tokenizer(self.data)
 		self.dataProcessed = self.cleaner(dataTokenized)
+		self.dataProcessed = self.featex(self.dataProcessed)
 
 	def train(self):
-		self.classifier = MaxentClassifier.train(self.featex(self.dataProcessed), max_iter=2)
+		self.classifier = MaxentClassifier.train(self.dataProcessed, max_iter=2)
 		
 
