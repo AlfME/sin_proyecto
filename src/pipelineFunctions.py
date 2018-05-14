@@ -67,8 +67,12 @@ def featureEx_stance():
 	def featex(data):
 		res = [];
 		for d in data:
+			feat_dict = {};
+
 			for w in d[0]:
-				res = res + [({w : 1}, d[1])]
+				feat_dict[w] = 1;
+			
+			res = res + [(feat_dict, d[1])];
 
 		return res;
 
