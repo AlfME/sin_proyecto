@@ -91,14 +91,14 @@ shuffle(formatted_labels);
 gender_result = [];
 stance_result = [];
 def evaluate_gender():
-	gender_pipeline.setData(tweets);
+	gender_pipeline.setData(formatted_labels);
 	gender_pipeline.preprocess();
 	for i in gender_pipeline.getProcessedData():
 		gender_result.append(gender_pipeline.getClassifier().classify(i[0]));
 
 
 def evaluate_stance():
-	stance_pipeline.setData(tweets);
+	stance_pipeline.setData(formatted_labels);
 	stance_pipeline.preprocess();
 	for i in stance_pipeline.getProcessedData():
 		stance_result.append(stance_pipeline.getClassifier().classify(i[0]));
