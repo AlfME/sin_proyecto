@@ -13,7 +13,7 @@ def tokenizer1():
 	def exToken(data):
 		res = [];
 		for d in data:
-			res = res + [(toktok.tokenize(d[0]), d[1][0])]; #TODO change
+			res = res + [(toktok.tokenize(d[0]), d[1][0])]; #change here the second number for gender/stance
 
 		return res;
 
@@ -40,6 +40,18 @@ def featureEx1():
 
 
 ####################GENDER#######################
+
+def tokenizer_gender():
+	toktok = ToktokTokenizer();
+
+	def exToken(data):
+		res = [];
+		for d in data:
+			res = res + [(toktok.tokenize(d[0]), d[1][1])];
+
+		return res;
+
+	return exToken;
 def cleaner_gender():
 	return lambda x : x;
 
@@ -60,6 +72,17 @@ def featureEx_gender():
 
 
 #####################STANCE########################
+def tokenizer_stance():
+	toktok = ToktokTokenizer();
+
+	def exToken(data):
+		res = [];
+		for d in data:
+			res = res + [(toktok.tokenize(d[0]), d[1][0])]; 
+
+		return res;
+
+	return exToken;
 def cleaner_stance():
 	return lambda x : x;
 

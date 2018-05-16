@@ -43,8 +43,9 @@ stance_classifier = None;
 
 def train_stance():
 	#setup pipeline and run training
+	stance_pipeline.setClassifier(MaxentClassifier);
 	stance_pipeline.setData(formatted_input);
-	stance_pipeline.setTokenizer(tokenizer1());
+	stance_pipeline.setTokenizer(tokenizer_stance());
 	stance_pipeline.setCleaner(cleaner_stance());
 	stance_pipeline.setFeatureEx(featureEx_stance());
 	stance_pipeline.preprocess();
@@ -60,8 +61,9 @@ def train_stance():
 
 def train_gender():
 	#setup pipeline and run training
+	gender_pipeline.setClassifier(MaxentClassifier);
 	gender_pipeline.setData(formatted_input);
-	gender_pipeline.setTokenizer(tokenizer1());
+	gender_pipeline.setTokenizer(tokenizer_gender());
 	gender_pipeline.setCleaner(cleaner_gender());
 	gender_pipeline.setFeatureEx(featureEx_gender());
 	
@@ -80,7 +82,7 @@ def train_gender():
 
 
 train_gender();
-#train_stance();
+train_stance();
 
 #evaluate
 truth  = file_handler.load_file("truth_es_second.txt");
@@ -99,6 +101,7 @@ def evaluate_gender():
 	gender_pipeline.preprocess();
 	for i in gender_pipeline.getProcessedData():
 		gender_result.append(gender_pipeline.getClassifier().classify(i[0]));
+		print(gender_pipeline.getClassifier().classify(i[0]));
 
 
 def evaluate_stance():
@@ -106,10 +109,11 @@ def evaluate_stance():
 	stance_pipeline.preprocess();
 	for i in stance_pipeline.getProcessedData():
 		stance_result.append(stance_pipeline.getClassifier().classify(i[0]));
+		print(stance_pipeline.getClassifier().classify(i[0]));
 
 
 evaluate_gender();
-#evaluate_stance();
+evaluate_stance();
 def print_result():
 	print_str = [];
 	count = 0;
@@ -137,5 +141,13 @@ def print_result():
 	write_file.write(str(print_str));
 	write_file.close();
 
-print_result();
-#evaluator.evaluate(classifier, formatted_labels);
+#print_result();
+
+#get measures
+print(">>> GENDER: ");
+evaluator.evaluate(gender_result, gender_pipeline.getProcessedData());
+print();
+print(">>> STANCE: ");
+evaluator.evaluate(stance_result, stance_pipeline.getProcessedData());
+
+

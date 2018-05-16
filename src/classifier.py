@@ -17,7 +17,6 @@ import nltk
 import pickle
 
 import nltk.classify.util
-from nltk.classify import MaxentClassifier
 
 
 class ClassificationPipeline:
@@ -41,8 +40,8 @@ class ClassificationPipeline:
 	def setFeatureEx(self, featex):
 		self.featex = featex
 
-	def resetClassifier(self, classifier):
-		self.classifier = None
+	def setClassifier(self, classifier):
+		self.classifier = classifier
 
 	def loadClassifierFromFile(self, name):
 		f = open("../classifiers/" + name + '.pickle', 'rb')
@@ -67,6 +66,6 @@ class ClassificationPipeline:
 		self.dataProcessed = self.featex(self.dataProcessed)
 
 	def train(self):
-		self.classifier = MaxentClassifier.train(self.dataProcessed, max_iter=2)
+		self.classifier = self.classifier.train(self.dataProcessed, max_iter=2)
 		
 
