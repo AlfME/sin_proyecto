@@ -39,13 +39,14 @@ gender_pipeline = ClassificationPipeline();
 gender_classifier = None;
 stance_classifier = None;
 
+
+
 def train_stance():
 	#setup pipeline and run training
 	stance_pipeline.setData(formatted_input);
 	stance_pipeline.setTokenizer(tokenizer1());
 	stance_pipeline.setCleaner(cleaner_stance());
 	stance_pipeline.setFeatureEx(featureEx_stance());
-	
 	stance_pipeline.preprocess();
 	print("Preprocessed data");
 	stance_pipeline.train();
@@ -75,6 +76,9 @@ def train_gender():
 	gender_classifier = gender_pipeline.getClassifier();
 	print("saved classifier");
 
+
+
+
 train_gender();
 #train_stance();
 
@@ -86,7 +90,7 @@ formatted_labels= [];
 for i in truth:
 	formatted_labels.append((tweets[i], truth[i]));
 
-shuffle(formatted_labels);
+#shuffle(formatted_labels);
 
 gender_result = [];
 stance_result = [];
@@ -94,28 +98,36 @@ def evaluate_gender():
 	gender_pipeline.setData(formatted_labels);
 	gender_pipeline.preprocess();
 	for i in gender_pipeline.getProcessedData():
-		gender_result.append(gender_pipeline.getClassifier().classify(i[0]));
+		gender_result.append(gender_pipeline.getClassifier().classify(i));
 
 
 def evaluate_stance():
 	stance_pipeline.setData(formatted_labels);
 	stance_pipeline.preprocess();
 	for i in stance_pipeline.getProcessedData():
-		stance_result.append(stance_pipeline.getClassifier().classify(i[0]));
+		stance_result.append(stance_pipeline.getClassifier().classify(i));
+
+
+
+
+
 
 evaluate_gender();
 #evaluate_stance();
 def print_result():
 	print_str = [];
-	for i in range(0, len(tweets)):
-		print_str.append("");
-		print_str[i] = i + "\t" + tweets[i] + "\t";
-	for i in range(0, len(gender_result)):
+	count = 0;
+	for i in tweets:
+		count += 1;
+		print_str.append(str(count) + "\t" + i + "\t");
+	count = 0;
+	for i in gender_result:
 		print("[", i, "]\t");
 		if(i == "Male"):
-			print_str[i] += "Male\t";
+			print_str[count] += "Male\t";
 		else:
-			print_str[i] += "Female\t";
+			print_str[count] += "Female\t";
+		count += 1;
 #	for i in range(0, len(stance_result)):
 #		print("{", i, "}\t");
 #		if(i == "FAVOR"):
@@ -125,4 +137,9 @@ def print_result():
 #		else:
 #			print_str[i] += "NEUTRAL\t";
 
+	write_file = open("guess_es.txt", "w");
+	write_file.write(print_str);
+	write_file.close();
+
+print_result();
 #evaluator.evaluate(classifier, formatted_labels);
