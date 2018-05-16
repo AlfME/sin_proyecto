@@ -90,7 +90,7 @@ formatted_labels= [];
 for i in truth:
 	formatted_labels.append((tweets[i], truth[i]));
 
-#shuffle(formatted_labels);
+shuffle(formatted_labels);
 
 gender_result = [];
 stance_result = [];
@@ -98,18 +98,14 @@ def evaluate_gender():
 	gender_pipeline.setData(formatted_labels);
 	gender_pipeline.preprocess();
 	for i in gender_pipeline.getProcessedData():
-		gender_result.append(gender_pipeline.getClassifier().classify(i));
+		gender_result.append(gender_pipeline.getClassifier().classify(i[0]));
 
 
 def evaluate_stance():
 	stance_pipeline.setData(formatted_labels);
 	stance_pipeline.preprocess();
 	for i in stance_pipeline.getProcessedData():
-		stance_result.append(stance_pipeline.getClassifier().classify(i));
-
-
-
-
+		stance_result.append(stance_pipeline.getClassifier().classify(i[0]));
 
 
 evaluate_gender();
@@ -138,7 +134,7 @@ def print_result():
 #			print_str[i] += "NEUTRAL\t";
 
 	write_file = open("guess_es.txt", "w");
-	write_file.write(print_str);
+	write_file.write(str(print_str));
 	write_file.close();
 
 print_result();
