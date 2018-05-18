@@ -4,6 +4,7 @@ Here the functions for the pipeline are defined.
 
 """
 from nltk.tokenize.toktok import ToktokTokenizer
+from nltk import FreqDist;
 
 
 #define tokenizer
@@ -128,6 +129,22 @@ def featureEx_stance2():
 
 			for w in d[0]:
 				feat_dict[w] = 1;
+			
+			res = res + [(feat_dict, d[1], d[2])];
+
+		return res;
+
+	return featex;
+
+def featureEx_stance2_vol2():
+	def featex(data):
+		res = [];
+		
+		for d in data:
+			fdist = FreqDist(w.lower() for w in d[0]);
+			words = fdist.most_common(100)[5:];
+
+			feat_dict = {w : fdist[w] for w in words};
 			
 			res = res + [(feat_dict, d[1], d[2])];
 

@@ -25,7 +25,7 @@ def load_data(tweet_files, truth_files):
 	if not no_training:
 		data = file_handler.load_files_formatted_split(truth_files, tweet_files, 0.9, 0.1);
 	else:
-		data = file_handler.load_files_formatted_split(truth_files, tweet_files, 0, 1); #all data test
+		data = file_handler.load_files_formatted_split(truth_files, tweet_files, 1- test_prop, test_prop); #all data test
 	
 	print("< Loaded data successfully");
 
@@ -94,6 +94,7 @@ def main():
 	global no_catalan;
 	global no_training;
 	global classifierFile;
+	global test_prop;
 
 	if len(sys.argv) > 1:
 		print("Starting the task with the following configuration:");
@@ -113,6 +114,10 @@ def main():
 		classifierFile = sys.argv[2];
 		no_training = True;
 		print("LOADING CLASSIFIER " + classifierFile + " - RUN AS TEST EVAL");
+
+	if len(sys.argv) > 3:
+		test_prop = float(sys.argv[3]);
+		print("WITH TEST SPLIT " +  str(test_prop));
 
 	tweet_files = [];
 	truth_files = [];		
@@ -147,6 +152,8 @@ def main():
 #call main
 no_catalan = False;
 no_espanol = False;
+
+test_prop = 0.1;
 
 no_training = False;
 classifierFile = "basic1_es";

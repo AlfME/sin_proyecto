@@ -20,7 +20,7 @@ def evaluateMultilabel(result, data, label_index):
 
  	print(cm.pretty_format(sort_by_count=True, show_percents=True, truncate=9))
 
-	#print_accuracy_per_label(cm, data);
+	print_accuracy_per_label(cm, data);
 	#print_macro_f1_per_label(cm, data);
 
 def print_accuracy_per_label(cm, data):
@@ -40,7 +40,6 @@ def print_accuracy_per_label(cm, data):
 
 	print("TP:", sum(true_positives.values()), true_positives);
 	print("FN:", sum(false_negatives.values()), false_negatives);
-	print("FP:", sum(false_positives.values()), false_positives);
+	print("FP:", sum(false_positives.values()), false_positives);	
 
-	for i in labels:
-		
+	acc = float(sum(true_positives.values())) / float(sum(true_positives.values() +  false_negatives.values() + false_positives.values()));
