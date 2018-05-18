@@ -72,7 +72,7 @@ def print_result(data, result, indexkeymap):
 	
 	print_str = [];
 	for i in range(len(result)):
-		print_str += [indexkeymap[i] + "\t" + data[i][0] + "\t" + result[i] + "\n"];
+		print_str += [str(indexkeymap[i]) + "\t" + str(data[i][0]) + "\t" + str(result[i]) + "\n"];
 	
 	open_name = "result_stance_" + classifierFile;
 	if not no_catalan:
@@ -83,7 +83,7 @@ def print_result(data, result, indexkeymap):
 
 	wfile = open(open_name, "w");
 	for s in print_str:
-		wfile.write(s.encode('utf8'));
+		wfile.write(str(s.encode('utf8')));
 
 	wfile.close();
 
