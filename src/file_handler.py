@@ -19,9 +19,9 @@ def load_file(file_name):
 		if(elements[0] == ''):
 			continue;
 		if(len(elements) >= 3):
-			elements_structured = (unicode(elements[1], 'utf8'), unicode(elements[2], 'utf8'), file_name[-6:-4].upper());
+			elements_structured = (elements[1].encode('utf8'), elements[2].encode('utf8'), file_name[-6:-4].upper());
 		else:
-			elements_structured = (unicode(elements[1], 'utf8'));
+			elements_structured = (elements[1].encode('utf8'));
 		loaded_lines[elements[0]] = elements_structured;
 	return loaded_lines;
 
