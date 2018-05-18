@@ -25,6 +25,9 @@ class ClassificationPipeline:
 	Sets the data of the pipeline. It should be given as a list of pairs of (instance, class_labels), where the instance is a text string and the class labels are a tupel of class labels.
 
 	"""
+	def __init__(self):
+		self.labelsel = None
+
 	def setData(self, data):
 		self.data = data	
 
@@ -39,6 +42,9 @@ class ClassificationPipeline:
 	
 	def setFeatureEx(self, featex):
 		self.featex = featex
+
+	def setLabelSelection(self, labelsel):
+		self.labelsel = labelsel
 
 	def setClassifier(self, classifier):
 		self.classifier = classifier
@@ -64,6 +70,9 @@ class ClassificationPipeline:
 		dataTokenized = self.tokenizer(self.data)
 		self.dataProcessed = self.cleaner(dataTokenized)
 		self.dataProcessed = self.featex(self.dataProcessed)
+
+		if self.labelsel != None:
+			self.dataProcessed = self.labelsel(self.dataProcessed)
 
 	def train(self):
 		self.classifier = self.classifier.train(self.dataProcessed, max_iter=2)

@@ -138,7 +138,9 @@ def print_result():
 #			print_str[i] += "NEUTRAL\t";
 
 	write_file = open("guess_es.txt", "w");
-	write_file.write(str(print_str));
+	for s in print_str:
+		write_file.write(s);
+
 	write_file.close();
 
 #print_result();

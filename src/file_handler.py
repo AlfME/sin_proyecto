@@ -37,7 +37,7 @@ def load_files_formatted(truth_files, tweet_files):
 	formatted_data = [];
 	for i in range(len(truths)):
 		for p in truths[i]:
-			formatted_data.append((tweets[i][p], truths[i][p], p)); #(tweet, label, ID)
+			formatted_data.append((tweets[i][p], truths[i][p], p)); #(tweet, labels, ID)
 
 	return formatted_data
 
@@ -53,6 +53,3 @@ def load_files_formatted_split(truth_files, tweet_files, train_prop = 0.9, test_
 	upper_bound = int(round(len(data) * train_prop))
 	
 	return (data[:upper_bound],  data[upper_bound:])
-
-
-print(load_files_formatted_split(["truth_es.txt"], ["tweets_es.txt"], 0.9, 0.1)[1][:10]);
