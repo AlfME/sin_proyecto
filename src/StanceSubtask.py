@@ -67,13 +67,15 @@ def apply(data, classifier):
 	return (result, indexkeymap);
 
 
-def print_result(data, result, indexkeymap):
+def print_result(data, result, indexkeymap, labelindex):
 	print("> Printing result to file");
 	
-	print_str = [];
+	print_str = "";
+	gold_str = [];
 	for i in range(len(result)):
-		print_str += [str(indexkeymap[i]) + "\t" + str(data[i][0]) + "\t" + str(result[i]) + "\n"];
-	
+		print_str += indexkeymap[i] + "\t" + result[i] + "\t" + data[i][0] + "\n";
+		 #gold_str += [indexkeymap[i] + "\t" + "" + data[i][0] + "\t" + data[i][1][labelindex] + "\n"];
+
 	open_name = "result_stance_" + classifierFile;
 	if not no_catalan:
 		open_name += "CA";
@@ -82,10 +84,15 @@ def print_result(data, result, indexkeymap):
 		open_name += "ES";
 
 	wfile = open(open_name, "w");
-	for s in print_str:
-		wfile.write(str(s.encode('utf8')));
+	wfile.write(str(print_str.encode('utf8')));
 
 	wfile.close();
+
+	#wfile = open(open_name + "_GOLD", "w");
+	#for s in gold_str:
+	#	wfile.write(str(s.encode('utf8')));
+
+	#wfile.close();
 
 
 def main():
@@ -145,7 +152,7 @@ def main():
 		print("### TRAINED AND STORED CLASSIFIER (in " +  classifierFile + ")");
 	else:
 		res = apply(pipeline.getProcessedData(), pipeline.getClassifier());
-		print_result(data[1], res[0], res[1]);
+		print_result(data[1], res[0], res[1], 0);
 		
 		evaluator.evaluateMultilabel(res[0], pipeline.getProcessedData(), 0);
 

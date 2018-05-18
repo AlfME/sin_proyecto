@@ -71,6 +71,41 @@ def featureEx_gender():
 
 	return featex;
 
+def tokenizer_gender2():
+	toktok = ToktokTokenizer();
+
+	def exToken(data):
+		res = [];
+		for d in data:
+			res = res + [(toktok.tokenize(d[0]), d[1], d[2])]; 
+
+		return res;
+
+	return exToken;
+
+def cleaner_gender2():
+	return lambda x : x;
+
+def featureEx_gender2():
+	def featex(data):
+		res = [];
+		for d in data:
+			feat_dict = {};
+
+			for w in d[0]:
+				feat_dict[w] = 1;
+			
+			res = res + [(feat_dict, d[1], d[2])];
+
+		return res;
+
+	return featex;
+
+def labelSelection_gender2():
+	def labelsec(data):
+		return [(d[0], d[1][1]) for d in data];
+
+	return labelsec;
 
 #####################STANCE########################
 def tokenizer_stance():
