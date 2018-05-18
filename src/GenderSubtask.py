@@ -71,12 +71,13 @@ def print_result(data, result, indexkeymap, labelindex):
 	print("> Printing result to file");
 	
 	print_str = "";
-	gold_str = [];
 	for i in range(len(result)):
-		print_str += indexkeymap[i] + "\t" + result[i] + "\t" + data[i][0] + "\n";
-		 #gold_str += [indexkeymap[i] + "\t" + "" + data[i][0] + "\t" + data[i][1][labelindex] + "\n"];
+		result_str =  result[i];
+		print_str += indexkeymap[i] + "\t"
+		print_str += str(result_str) + "\t"
+		print_str += data[i][0] + "\n";
 
-	open_name = "result_stance_" + classifierFile;
+	open_name = "result_gender_" + classifierFile;
 	if not no_catalan:
 		open_name += "CA";
 
@@ -85,7 +86,6 @@ def print_result(data, result, indexkeymap, labelindex):
 
 	wfile = open(open_name, "w");
 	wfile.write(str(print_str.encode('utf8')));
-
 	wfile.close();
 
 	#wfile = open(open_name + "_GOLD", "w");
@@ -130,12 +130,20 @@ def main():
 	truth_files = [];		
 
 	if not no_catalan:
-		tweet_files = tweet_files + ["tweets_ca.txt"];
-		truth_files = truth_files + ["truth_ca.txt"];
+		if no_training:
+			tweet_files = ["test_samples/GenderCa"]
+			truth_files = None
+		else:
+			tweet_files = tweet_files + ["tweets_ca.txt"];
+			truth_files = truth_files + ["truth_ca.txt"];
 
 	if not no_espanol:
-		tweet_files = tweet_files + ["tweets_es.txt"];
-		truth_files = truth_files + ["truth_es.txt"];
+		if no_training:
+			tweet_files = ["test_samples/GenderEs"]
+			truth_files = None
+		else:
+			tweet_files = tweet_files + ["tweets_es.txt"];
+			truth_files = truth_files + ["truth_es.txt"];
 		
 	data = load_data(tweet_files, truth_files);
 

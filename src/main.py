@@ -23,8 +23,8 @@ import random
 from random import shuffle
 
 #load files
-truth  = file_handler.load_file("truth_es_first.txt");
-tweets = file_handler.load_file("tweets_es_first.txt");
+truth  = file_handler.load_file("test_samples/GenderEs", True);
+tweets = file_handler.load_file("test_samples/GenderEs", True);
 
 formatted_input = [];
 for i in truth:
