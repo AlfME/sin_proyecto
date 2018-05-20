@@ -9,6 +9,7 @@ import random
 
 
 def load_file(file_name, test_file):
+	print(file_name);
 	sample_folder	= "../samples";
 	file_path	= sample_folder + "/" + file_name;
 	text_file	= open(file_path, "r");
@@ -41,7 +42,7 @@ def load_files_formatted(truth_files, tweet_files):
 			truths = truths + [load_file(t, is_test)];
 	else:
 		is_test = True;
-		truths = load_file("truth_es.txt", False);
+		#truths = load_file("truth_es.txt", False);
 
 	tweets = []
 	for t in tweet_files:
@@ -51,7 +52,7 @@ def load_files_formatted(truth_files, tweet_files):
 	for i in range(len(tweets)):
 		for p in tweets[i]:
 			if is_test:
-				label = tweets[i][p];
+				label = (b'AGAINST', b'MALE', 'ES');
 			else:
 				label = truths[i][p];
 			formatted_data.append((tweets[i][p], label, p)); #(tweet, labels, ID)

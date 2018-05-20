@@ -72,11 +72,16 @@ def print_result(data, result, indexkeymap, labelindex):
 	
 	print_str = "";
 	gold_str = "";
-	for i in range(len(result)):
-		print_str += indexkeymap[i] + "\t" + result[i].decode('utf8') + "\t" + data[i][0].decode('utf8') + "\n";
+	#for i in range(len(result)):
+	#	print_str += indexkeymap[i] + "\t" + result[i].decode('utf8') + "\t" + data[i][0].decode('utf8') + "\n";
 		#gold_str += indexkeymap[i] + "\t" + data[i][1][labelindex].decode('utf8') + "\t" + data[i][0].decode('utf8')  + "\n";
 		#print_str += indexkeymap[i] + "\ttarget\t" + data[i][0].decode('utf8') + "\t" + result[i].decode('utf8') + "\n";
 		#gold_str += indexkeymap[i]  + "\ttarget\t" + data[i][0].decode('utf8') + "\t" + data[i][1][labelindex].decode('utf8') + "\n";
+	for i in range(len(result)):
+		result_str =  result[i];
+		print_str += indexkeymap[i] + "\t"
+		print_str += str(result_str) + "\t"
+		print_str += data[i][0] + "\n";
 
 	open_name = "result_stance_" + classifierFile;
 	if not no_catalan:
@@ -127,15 +132,23 @@ def main():
 		print("WITH TEST SPLIT " +  str(test_prop));
 
 	tweet_files = [];
-	truth_files = [];		
-
+	truth_files = [];
+		
 	if not no_catalan:
-		tweet_files = tweet_files + ["tweets_ca.txt"];
-		truth_files = truth_files + ["truth_ca.txt"];
+		if no_training:
+			tweet_files = ["test_samples/GenderCa"]
+			truth_files = None
+		else:
+			tweet_files = tweet_files + ["tweets_ca.txt"];
+			truth_files = truth_files + ["truth_ca.txt"];
 
 	if not no_espanol:
-		tweet_files = tweet_files + ["tweets_es.txt"];
-		truth_files = truth_files + ["truth_es.txt"];
+		if no_training:
+			tweet_files = ["test_samples/GenderEs"]
+			truth_files = None
+		else:
+			tweet_files = tweet_files + ["tweets_es.txt"];
+			truth_files = truth_files + ["truth_es.txt"];
 		
 	data = load_data(tweet_files, truth_files);
 
