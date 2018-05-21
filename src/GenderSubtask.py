@@ -72,10 +72,10 @@ def print_result(data, result, indexkeymap, labelindex):
 	
 	print_str = "";
 	for i in range(len(result)):
-		result_str =  result[i];
-		print_str += indexkeymap[i] + "\t"
-		print_str += str(result_str) + "\t"
-		print_str += data[i][0] + "\n";
+		result_str =  result[i].decode('utf8');
+		print_str += indexkeymap[i] + "\t0\t0\t"
+		print_str += str(result_str) + "\n"
+		#print_str += data[i][0] + "\n";
 
 	open_name = "result_gender_" + classifierFile;
 	if not no_catalan:
@@ -85,7 +85,7 @@ def print_result(data, result, indexkeymap, labelindex):
 		open_name += "ES";
 
 	wfile = open(open_name, "w");
-	wfile.write(str(print_str.encode('utf8')));
+	wfile.write(str(print_str));
 	wfile.close();
 
 	#wfile = open(open_name + "_GOLD", "w");
