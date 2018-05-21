@@ -75,6 +75,6 @@ class ClassificationPipeline:
 			self.dataProcessed = self.labelsel(self.dataProcessed)
 
 	def train(self):
-		self.classifier = self.classifier.train(self.dataProcessed, max_iter=20)
+		self.classifier = self.classifier.train(self.dataProcessed, max_iter=10)
 		
 

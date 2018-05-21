@@ -11,7 +11,7 @@ def evaluate(result, data):
 	res = nltk.ConfusionMatrix(result, data);
 	print(res.pretty_format(sort_by_count=True, show_percents=True, truncate=9));
 
-def evaluateMultilabel(result, data, label_index):
+def evaluateMultilabel(result, data, label_index):	
 	data = [l[label_index] for (f, l, i) in data]
 	
 	cm = nltk.ConfusionMatrix(result, data);	
