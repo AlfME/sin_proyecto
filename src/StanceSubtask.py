@@ -135,7 +135,7 @@ def main():
 	truth_files = [];
 		
 	if not no_catalan:
-		if no_training:
+		if False:#no_training:
 			tweet_files = ["test_samples/GenderCa"]
 			truth_files = None
 		else:
@@ -143,7 +143,7 @@ def main():
 			truth_files = truth_files + ["truth_ca.txt"];
 
 	if not no_espanol:
-		if no_training:
+		if False:#no_training:
 			tweet_files = ["test_samples/GenderEs"]
 			truth_files = None
 		else:
