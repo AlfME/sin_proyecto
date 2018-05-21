@@ -157,13 +157,19 @@ def cleaner_stance2():
 	return lambda x : x;
 
 def featureEx_stance2():
+	filer = open("../corpora/espanol_stopwords.txt");
+	stopwords = set();
+	for l in filer:
+		stopwords.add(l);
+
 	def featex(data):
 		res = [];
 		for d in data:
 			feat_dict = {};
 
 			for w in d[0]:
-				feat_dict[w] = 1;
+				#if not w.lower() in stopwords:
+				feat_dict[w.lower()] = 1;
 			
 			res = res + [(feat_dict, d[1], d[2])];
 

@@ -17,6 +17,9 @@ import sys;
 
 import nltk
 from nltk.classify import MaxentClassifier
+from nltk import FreqDist;
+
+from nltk.tokenize.toktok import ToktokTokenizer
 
 
 def load_data(tweet_files, truth_files):
@@ -166,3 +169,27 @@ no_training = False;
 classifierFile = "basic1_es";
 	
 main();
+
+"""
+Analysis
+
+res = load_data(["tweets_es.txt"], ["truth_es.txt"]);
+res = res[0] + res[1]
+res2 = load_data(["tweets_ca.txt"], ["truth_ca.txt"]);
+res2 = res2[0] + res2[1]
+
+data = [d for (d, l, i) in res] 
+data += [d for (d, l, i) in res2];
+
+toktok = ToktokTokenizer();
+tokens = [toktok.tokenize(d) for d in data]
+res = []
+for l in tokens:
+	for t in l:
+		res += [t.lower().encode("utf8")];
+
+print(res[:5]);
+
+freqD = FreqDist(res);
+print(freqD.most_common(100));
+"""
