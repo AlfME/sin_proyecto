@@ -1,0 +1,118 @@
+nils@nils-laptop:~/Documents/university/sin/proyecto_sin/src$ python3 GenderSubtask.py -ES basic_gender_all 0.1
+###### GENDER SUBTASK ######
+Starting the task with the following configuration:
+ONLY ESPANOL
+LOADING CLASSIFIER basic_gender_all - RUN AS TEST EVAL
+WITH TEST SPLIT 0.1
+> Loading data...['tweets_es.txt'] and ['truth_es.txt']
+truth_es.txt
+tweets_es.txt
+< Loaded data successfully
+> Instantiating pipeline...
+< Instantiated pipeline successfully
+> Classifying data using classifier
+> Successfully classified instances.
+> Printing result to file
+       |      F        |
+       |      E        |
+       |      M      M |
+       |      A      A |
+       |      L      L |
+       |      E      E |
+-------+---------------+
+FEMALE | <50.2%>  2.1% |
+  MALE |   3.0% <44.7%>|
+-------+---------------+
+(row = reference; col = test)
+
+TP: 410 Counter({'FEMALE': 217, 'MALE': 193})
+FN: 22 Counter({'MALE': 13, 'FEMALE': 9})
+FP: 22 Counter({'FEMALE': 13, 'MALE': 9})
+For MALE:
+Precision: 0.9554455445544554
+Recall: 0.9368932038834952
+F1: 0.946078431372549
+For FEMALE:
+Precision: 0.9434782608695652
+Recall: 0.9601769911504425
+F1: 0.9517543859649124
+nils@nils-laptop:~/Documents/university/sin/proyecto_sin/src$ python3 GenderSubtask.py -CA basic_gender_all 0.1
+###### GENDER SUBTASK ######
+Starting the task with the following configuration:
+ONLY CATALAN
+LOADING CLASSIFIER basic_gender_all - RUN AS TEST EVAL
+WITH TEST SPLIT 0.1
+> Loading data...['tweets_ca.txt'] and ['truth_ca.txt']
+truth_ca.txt
+tweets_ca.txt
+< Loaded data successfully
+> Instantiating pipeline...
+< Instantiated pipeline successfully
+> Classifying data using classifier
+> Successfully classified instances.
+> Printing result to file
+       |      F        |
+       |      E        |
+       |      M      M |
+       |      A      A |
+       |      L      L |
+       |      E      E |
+-------+---------------+
+FEMALE | <50.2%>  0.5% |
+  MALE |   3.0% <46.3%>|
+-------+---------------+
+(row = reference; col = test)
+
+TP: 417 Counter({'FEMALE': 217, 'MALE': 200})
+FN: 15 Counter({'MALE': 13, 'FEMALE': 2})
+FP: 15 Counter({'FEMALE': 13, 'MALE': 2})
+For FEMALE:
+Precision: 0.9434782608695652
+Recall: 0.9908675799086758
+F1: 0.9665924276169265
+For MALE:
+Precision: 0.9900990099009901
+Recall: 0.9389671361502347
+F1: 0.963855421686747
+nils@nils-laptop:~/Documents/university/sin/proyecto_sin/src$ python3 GenderSubtask.py -ALL basic_gender_all 0.1
+###### GENDER SUBTASK ######
+Starting the task with the following configuration:
+BOTH LANGUAGES
+LOADING CLASSIFIER basic_gender_all - RUN AS TEST EVAL
+WITH TEST SPLIT 0.1
+> Loading data...['tweets_ca.txt', 'tweets_es.txt'] and ['truth_ca.txt', 'truth_es.txt']
+truth_ca.txt
+truth_es.txt
+tweets_ca.txt
+tweets_es.txt
+< Loaded data successfully
+> Instantiating pipeline...
+< Instantiated pipeline successfully
+> Classifying data using classifier
+> Successfully classified instances.
+> Printing result to file
+       |             F |
+       |             E |
+       |      M      M |
+       |      A      A |
+       |      L      L |
+       |      E      E |
+-------+---------------+
+  MALE | <34.4%> 18.3% |
+FEMALE |  13.9% <33.4%>|
+-------+---------------+
+(row = reference; col = test)
+
+TP: 586 Counter({'MALE': 297, 'FEMALE': 289})
+FN: 278 Counter({'MALE': 158, 'FEMALE': 120})
+FP: 278 Counter({'FEMALE': 158, 'MALE': 120})
+For MALE:
+Precision: 0.7122302158273381
+Recall: 0.6527472527472528
+F1: 0.6811926605504588
+For FEMALE:
+Precision: 0.6465324384787472
+Recall: 0.706601466992665
+F1: 0.6752336448598131
+nils@nils-laptop:~/Documents/university/sin/proyecto_sin/src$ 
+

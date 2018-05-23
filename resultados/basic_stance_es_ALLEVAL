@@ -1,0 +1,133 @@
+
+nils@nils-laptop:~/Documents/university/sin/proyecto_sin/src$ python3 StanceSubtask.py -ES basic_stance_es
+###### STANCE SUBTASK ######
+Starting the task with the following configuration:
+ONLY ESPANOL
+LOADING CLASSIFIER basic_stance_es - RUN AS TEST EVAL
+> Loading data...['tweets_es.txt'] and ['truth_es.txt']
+truth_es.txt
+tweets_es.txt
+< Loaded data successfully
+> Instantiating pipeline...
+< Instantiated pipeline successfully
+> Classifying data using classifier
+> Successfully classified instances.
+> Printing result to file
+        |      N      A        |
+        |      E      G        |
+        |      U      A      F |
+        |      T      I      A |
+        |      R      N      V |
+        |      A      S      O |
+        |      L      T      R |
+--------+----------------------+
+NEUTRAL | <47.9%> 11.1%   4.9% |
+AGAINST |   7.6% <25.0%>  0.9% |
+  FAVOR |   0.2%   0.2%  <2.1%>|
+--------+----------------------+
+(row = reference; col = test)
+
+TP: 324 Counter({'NEUTRAL': 207, 'AGAINST': 108, 'FAVOR': 9})
+FN: 108 Counter({'NEUTRAL': 69, 'AGAINST': 37, 'FAVOR': 2})
+FP: 108 Counter({'AGAINST': 49, 'NEUTRAL': 34, 'FAVOR': 25})
+For NEUTRAL:
+Precision: 0.8589211618257261
+Recall: 0.75
+F1: 0.8007736943907156
+For AGAINST:
+Precision: 0.6878980891719745
+Recall: 0.7448275862068966
+F1: 0.7152317880794702
+For FAVOR:
+Precision: 0.2647058823529412
+Recall: 0.8181818181818182
+F1: 0.39999999999999997
+nils@nils-laptop:~/Documents/university/sin/proyecto_sin/src$ python3 StanceSubtask.py -CA basic_stance_es
+###### STANCE SUBTASK ######
+Starting the task with the following configuration:
+ONLY CATALAN
+LOADING CLASSIFIER basic_stance_es - RUN AS TEST EVAL
+> Loading data...['tweets_ca.txt'] and ['truth_ca.txt']
+truth_ca.txt
+tweets_ca.txt
+< Loaded data successfully
+> Instantiating pipeline...
+< Instantiated pipeline successfully
+> Classifying data using classifier
+> Successfully classified instances.
+> Printing result to file
+        |      N             A |
+        |      E             G |
+        |      U      F      A |
+        |      T      A      I |
+        |      R      V      N |
+        |      A      O      S |
+        |      L      R      T |
+--------+----------------------+
+NEUTRAL | <30.8%> 28.7%   2.1% |
+  FAVOR |   2.3% <24.5%>     . |
+AGAINST |   3.7%   6.5%  <1.4%>|
+--------+----------------------+
+(row = reference; col = test)
+
+TP: 245 Counter({'NEUTRAL': 133, 'FAVOR': 106, 'AGAINST': 6})
+FN: 187 Counter({'NEUTRAL': 133, 'AGAINST': 44, 'FAVOR': 10})
+FP: 187 Counter({'FAVOR': 152, 'NEUTRAL': 26, 'AGAINST': 9})
+For NEUTRAL:
+Precision: 0.8364779874213837
+Recall: 0.5
+F1: 0.6258823529411764
+For AGAINST:
+Precision: 0.4
+Recall: 0.12
+F1: 0.18461538461538463
+For FAVOR:
+Precision: 0.4108527131782946
+Recall: 0.9137931034482759
+F1: 0.5668449197860963
+nils@nils-laptop:~/Documents/university/sin/proyecto_sin/src$ python3 StanceSubtask.py -ALL basic_stance_es
+###### STANCE SUBTASK ######
+Starting the task with the following configuration:
+BOTH LANGUAGES
+LOADING CLASSIFIER basic_stance_es - RUN AS TEST EVAL
+> Loading data...['tweets_ca.txt', 'tweets_es.txt'] and ['truth_ca.txt', 'truth_es.txt']
+truth_ca.txt
+truth_es.txt
+tweets_ca.txt
+tweets_es.txt
+< Loaded data successfully
+> Instantiating pipeline...
+< Instantiated pipeline successfully
+> Classifying data using classifier
+> Successfully classified instances.
+> Printing result to file
+        |      N      A        |
+        |      E      G        |
+        |      U      A      F |
+        |      T      I      A |
+        |      R      N      V |
+        |      A      S      O |
+        |      L      T      R |
+--------+----------------------+
+NEUTRAL | <42.2%>  1.9%  16.3% |
+AGAINST |   2.2% <17.7%>  2.5% |
+  FAVOR |   1.3%   0.2% <15.6%>|
+--------+----------------------+
+(row = reference; col = test)
+
+TP: 653 Counter({'NEUTRAL': 365, 'AGAINST': 153, 'FAVOR': 135})
+FN: 211 Counter({'NEUTRAL': 157, 'AGAINST': 41, 'FAVOR': 13})
+FP: 211 Counter({'FAVOR': 163, 'NEUTRAL': 30, 'AGAINST': 18})
+For NEUTRAL:
+Precision: 0.9240506329113924
+Recall: 0.6992337164750958
+F1: 0.796074154852781
+For FAVOR:
+Precision: 0.45302013422818793
+Recall: 0.9121621621621622
+F1: 0.6053811659192825
+For AGAINST:
+Precision: 0.8947368421052632
+Recall: 0.788659793814433
+F1: 0.8383561643835616
+
