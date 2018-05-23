@@ -83,12 +83,12 @@ def print_result(data, result, indexkeymap, labelindex):
 		#print_str += indexkeymap[i] + "\ttarget\t" + data[i][0].decode('utf8') + "\t" + result[i].decode('utf8') + "\n";
 		#gold_str += indexkeymap[i]  + "\ttarget\t" + data[i][0].decode('utf8') + "\t" + data[i][1][labelindex].decode('utf8') + "\n";
 	for i in range(len(result)):
-		result_str =  result[i].decode('utf8');
+		result_str =  result[i].encode("utf8").decode('utf8');
 		print_str += indexkeymap[i] + "\t0\t0\t"
 		print_str += str(result_str) + "\n"
 		#print_str += data[i][0] + "\n";
 
-	open_name = "result_stance_" + classifierFile;
+	open_name = "../resultados/test/result_stance_" + classifierFile;
 	if not no_catalan:
 		open_name += "CA";
 
@@ -140,7 +140,7 @@ def main():
 	truth_files = [];
 		
 	if not no_catalan:
-		if False:#no_training:
+		if no_training:
 			tweet_files = ["test_samples/GenderCa"]
 			truth_files = None
 		else:
@@ -148,7 +148,7 @@ def main():
 			truth_files = truth_files + ["truth_ca.txt"];
 
 	if not no_espanol:
-		if False:#no_training:
+		if no_training:
 			tweet_files = ["test_samples/GenderEs"]
 			truth_files = None
 		else:
