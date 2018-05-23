@@ -87,14 +87,42 @@ def cleaner_gender2():
 	return lambda x : x;
 
 def featureEx_gender2():
+	name = "espanol"
+	file = open("../corpora/"+name+"_stopwords.txt");
+	stop_words = set();
+	for l in file:
+		stop_words.add(l.lower());
+	
+	name = "catalan"
+	file = open("../corpora/"+name+"_stopwords.txt");
+	for l in file:
+		stop_words.add(l.lower());
 	def featex(data):
 		res = [];
 		for d in data:
 			feat_dict = {};
 
+			letter_count = 0;
+			word_count = 0;
+			feat_dict["os"] = 0;
+			feat_dict["as"] = 0;
 			for w in d[0]:
+				if(w.lower() in stop_words):
+					continue;
+				letter_count += len(w);
+				
+				if (not w + "_count" in feat_dict):
+					feat_dict[w + "_count"] = 0;
+				feat_dict[w + "_count"] += 1;
 				feat_dict[w] = 1;
-			
+				if(w[-1] == "a"):
+					feat_dict["as"] += 1;
+				elif(w[-1] == "o"):
+					feat_dict["os"] += 1;
+
+			feat_dict["word count"] = len(d[0]);
+			feat_dict["average letter length"] = letter_count // len(d[0]);
+
 			res = res + [(feat_dict, d[1], d[2])];
 
 		return res;
@@ -174,6 +202,8 @@ def featureEx_stance2(is_espanol):
 
 			letter_count = 0;
 			word_count = 0;
+			feat_dict["os"] = 0;
+			feat_dict["as"] = 0;
 			for w in d[0]:
 				if(w.lower() in stop_words):
 					continue;
@@ -183,6 +213,10 @@ def featureEx_stance2(is_espanol):
 					feat_dict[w + "_count"] = 0;
 				feat_dict[w + "_count"] += 1;
 				feat_dict[w] = 1;
+				if(w[-1] == "a"):
+					feat_dict["as"] += 1;
+				elif(w[-1] == "o"):
+					feat_dict["os"] += 1;
 
 			feat_dict["word count"] = len(d[0]);
 			feat_dict["average letter length"] = letter_count // len(d[0]);
