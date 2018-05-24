@@ -38,7 +38,7 @@ def setup_pipeline(data):
 
 	pipeline.setTokenizer(pipelineFunctions.tokenizer_gender2());
 	pipeline.setCleaner(pipelineFunctions.cleaner_gender2());
-	pipeline.setFeatureEx(pipelineFunctions.featureEx_gender2());
+	pipeline.setFeatureEx(pipelineFunctions.featureEx_stance2(not no_espanol));
 
 	if not no_training:
 		pipeline.setClassifier(MaxentClassifier);
@@ -72,7 +72,7 @@ def print_result(data, result, indexkeymap, labelindex):
 	
 	print_str = "";
 	for i in range(len(result)):
-		result_str =  result[i].encode("utf8").decode('utf8');
+		result_str =  result[i].decode('utf8');
 		print_str += indexkeymap[i] + "\t0\t0\t"
 		print_str += str(result_str) + "\n"
 		#print_str += data[i][0] + "\n";

@@ -61,9 +61,9 @@ def print_macro_f1_per_label(cm, data):
 	f1_score = dict();	
 
 	for l in labels:
-		precision[l] = float(true_positives[l]) / float(true_positives[l] + false_positives[l]);
-		recall[l] = float(true_positives[l]) / float(true_positives[l] + false_negatives[l]);
-		f1_score[l] = float(2 * precision[l] * recall[l]) / float(precision[l] + recall[l]);
+		precision[l] = float(true_positives[l]) / float(true_positives[l] + false_positives[l] + 0.00001);
+		recall[l] = float(true_positives[l]) / float(true_positives[l] + false_negatives[l] + 0.00001);
+		f1_score[l] = float(2 * precision[l] * recall[l]) / float(precision[l] + recall[l] + 0.00001);
 		print("For " + str(l) +":");
 		print("Precision: " + str(precision[l]));
 		print("Recall: " +  str(recall[l]));

@@ -227,6 +227,50 @@ def featureEx_stance2(is_espanol):
 
 	return featex;
 
+def featureEx_stance3(is_espanol):
+	def featex(data):
+		res = [];
+		for d in data:
+			feat_dict = {};
+
+			letter_count = 0;
+			word_count = 0;
+			feat_dict["os"] = 0;
+			feat_dict["as"] = 0;
+			feat_dict["hashtags"] = 0;
+			feat_dict["addresses"] = 0;
+			feat_dict["num!"] = 0;
+			for w in d[0]:
+				word = w.lower();
+				letter_count += len(w);
+				
+				if(word[-1] == "a"):
+					feat_dict["as"] += 1;
+				elif(word[-1] == "o"):
+					feat_dict["os"] += 1;
+
+				if(word[0] == "#"):
+					feat_dict["hashtags"] += 1;
+					
+				if(word[0] == "@"):
+					feat_dict["addresses"] += 1; 
+
+				for l in w:
+					if l == "!":
+						feat_dict["num!"] += 1;
+
+				feat_dict[word[0] + "*" * (len(word)-1)] = 1;
+				
+
+			feat_dict["word count"] = len(d[0]);
+			feat_dict["average letter length"] = letter_count // len(d[0]);
+
+			res = res + [(feat_dict, d[1], d[2])];
+
+		return res;
+
+	return featex;
+
 def featureEx_stance2_vol2():
 	def featex(data):
 		res = [];
